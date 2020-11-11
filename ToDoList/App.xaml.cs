@@ -10,7 +10,17 @@ namespace ToDoList
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            //MainPage = new MainPage();
+
+            MainPage = new TabbedPage
+            {
+                Children =
+                {
+                    new pagTareas(),
+                    new pagCalendario()
+                }
+            };         
+
         }
 
         protected override void OnStart()
