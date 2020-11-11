@@ -58,6 +58,7 @@ namespace ToDoList.UWP
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
                 Xamarin.Forms.Forms.Init(e);
+                XamForms.Controls.Windows.Calendar.Init();
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
