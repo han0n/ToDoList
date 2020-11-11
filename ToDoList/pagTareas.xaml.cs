@@ -15,6 +15,11 @@ namespace ToDoList
         public pagTareas()
         {
             InitializeComponent();
+
+            lblFechaCorta.Text = DateTime.Now.ToShortDateString();
+            var idioma = new System.Globalization.CultureInfo("es-ES");
+            var dia = idioma.DateTimeFormat.GetDayName(DateTime.Today.DayOfWeek);
+            lblDiaHoy.Text = dia.ToString();
         }
     }
 }

@@ -4,10 +4,27 @@
              x:Class="ToDoList.pagTareas"
              Title="Tareas">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid Padding="25,0,0,0" 
+              RowDefinitions="Auto, Auto, Auto, *" 
+              ColumnDefinitions="Auto, *, Auto">
+
+            <Label Grid.Row="1" 
+                   Grid.Column="1" 
+                   Grid.ColumnSpan="2" 
+                   x:Name="lblFechaCorta" 
+                   Margin="0,0,10,0" 
+                   FontAttributes="Bold" 
+                   FontSize="30" 
+                   Padding="10,0,0,0"/>
+
+            <Label Grid.Row="1" 
+                   Grid.Column="3"  
+                   x:Name="lblDiaHoy" 
+                   Margin="0,0,10,0" 
+                   FontAttributes="Bold" 
+                   FontSize="30" 
+                   Padding="10,0,0,0"/>
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
