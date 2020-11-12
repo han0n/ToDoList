@@ -20,6 +20,18 @@ namespace ToDoList
             var idioma = new System.Globalization.CultureInfo("es-ES");
             var dia = idioma.DateTimeFormat.GetDayName(DateTime.Today.DayOfWeek);
             lblDiaHoy.Text = dia.ToString();
+
+            btnCrear.Clicked+=BtnCrear_Clicked;
         }
+
+        private void BtnCrear_Clicked(object sender, EventArgs e)
+        {
+            //throw new NotImplementedException();
+
+            pagCrear modalPage = new pagCrear();
+
+            this.Navigation.PushModalAsync(modalPage);
+        }
+
     }
 }

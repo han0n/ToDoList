@@ -4,7 +4,7 @@
              x:Class="ToDoList.pagTareas"
              Title="Tareas">
     <ContentPage.Content>
-        <Grid Padding="25,0,0,0" 
+        <Grid Padding="0,0,0,0" 
               RowDefinitions="Auto, Auto, Auto, *" 
               ColumnDefinitions="Auto, *, Auto">
 
@@ -24,6 +24,13 @@
                    FontAttributes="Bold" 
                    FontSize="30" 
                    Padding="10,0,0,0"/>
+            <!--En principio, aquí iran los elementos vacíos para listar los objetos creados-->
+
+            <Button Text="Crear"
+                    x:Name="btnCrear"
+                    Grid.ColumnSpan="4"
+                    Grid.Column="0"
+                    VerticalOptions="End"/>
 
         </Grid>
     </ContentPage.Content>
