@@ -7,29 +7,39 @@
         <Grid Padding="0,0,0,0" 
               RowDefinitions="Auto, Auto, Auto, *" 
               ColumnDefinitions="Auto, *, Auto">
+            <Grid Grid.Row="0"
+                  RowDefinitions="Auto"
+                  ColumnDefinitions="Auto, Auto, Auto"
+                  Padding="4,8,4,0">
+                
+                <Label Grid.Column="0"
+                       Text="Para hoy"
+                       FontSize="Medium"
+                       VerticalOptions="CenterAndExpand"/>
 
-            <Label Grid.Row="1" 
-                   Grid.Column="1" 
-                   Grid.ColumnSpan="2" 
-                   x:Name="lblFechaCorta" 
-                   Margin="0,0,10,0" 
-                   FontAttributes="Bold" 
-                   FontSize="30" 
-                   Padding="10,0,0,0"/>
+                <Label Grid.Column="1"  
+                       x:Name="lblDiaHoy" 
+                       FontAttributes="Bold"
+                       FontSize="22"
+                       VerticalOptions="End"/>
+                
+                <Label Grid.Column="2"
+                       Text="tienes:"
+                       FontSize="Medium"
+                       VerticalOptions="CenterAndExpand"/>
 
-            <Label Grid.Row="1" 
-                   Grid.Column="3"  
-                   x:Name="lblDiaHoy" 
-                   Margin="0,0,10,0" 
-                   FontAttributes="Bold" 
-                   FontSize="30" 
-                   Padding="10,0,0,0"/>
-            <!--En principio, aquí iran los elementos vacíos para listar los objetos creados-->
 
+                <!--En principio, aquí iran los elementos vacíos para listar los objetos creados-->
+            </Grid>
+            <!--Pero lo más acertado será añadir un Grid aquí para que muestre las tareas,
+            quedando el boton de añadir siempre abajo y hasta el final de la página
+            como tope, aunque tengo que ver si hay una forma para que se puedan visualizar
+            más tareas mediante un scroll-->
             <Button Text="Crear"
                     x:Name="btnCrear"
                     Grid.ColumnSpan="4"
                     Grid.Column="0"
+                    Grid.Row="1"
                     VerticalOptions="End"/>
 
         </Grid>

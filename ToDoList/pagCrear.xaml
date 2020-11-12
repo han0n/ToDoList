@@ -3,15 +3,43 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ToDoList.pagCrear">
     <ContentPage.Content>
-        <StackLayout Orientation="Horizontal">
-            <Button Text="Cancelar"
+        
+        <Grid RowDefinitions="Auto, Auto, *"
+              ColumnDefinitions="Auto, Auto, Auto">
+            
+            <StackLayout Orientation="Horizontal"
+                         Grid.Row="0"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="4">
+                
+                <Button Text="Cancelar"
                     x:Name="btnCancelar"
                     HorizontalOptions="StartAndExpand"
                     VerticalOptions="Start"/>
-            <Button Text="Guardar"
+                <Button Text="Guardar"
                     x:Name="btnGuardar"
                     HorizontalOptions="EndAndExpand"
                     VerticalOptions="Start"/>
-        </StackLayout>
+                
+            </StackLayout>
+
+            <StackLayout Grid.Row="1"
+                         Grid.ColumnSpan="4">
+                
+                <Label Text="Título de la tarea:"/>
+                <Entry />
+                
+            </StackLayout>
+
+            <StackLayout Grid.Row="2"
+                         Grid.ColumnSpan="4">
+
+                <Label Text="Comentarios:"/>
+                <Entry />
+
+            </StackLayout>
+
+        </Grid>
+        
     </ContentPage.Content>
 </ContentPage>

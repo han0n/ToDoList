@@ -16,12 +16,20 @@ namespace ToDoList
         {
             InitializeComponent();
 
-            lblFechaCorta.Text = DateTime.Now.ToShortDateString();
+            //lblFechaCorta.Text = DateTime.Now.ToShortDateString();
             var idioma = new System.Globalization.CultureInfo("es-ES");
             var dia = idioma.DateTimeFormat.GetDayName(DateTime.Today.DayOfWeek);
-            lblDiaHoy.Text = dia.ToString();
+            var fechaDia = DateTime.Now.Day.ToString();
+            var mes = idioma.DateTimeFormat.GetMonthName(DateTime.Now.Month);
 
-            btnCrear.Clicked+=BtnCrear_Clicked;
+            lblDiaHoy.Text += dia.ToString();
+            lblDiaHoy.Text += ", ";
+            lblDiaHoy.Text += fechaDia;
+            lblDiaHoy.Text += " de ";
+            lblDiaHoy.Text += mes;
+
+
+            btnCrear.Clicked += BtnCrear_Clicked;
         }
 
         private void BtnCrear_Clicked(object sender, EventArgs e)
