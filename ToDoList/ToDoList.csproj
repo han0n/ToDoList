@@ -17,19 +17,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="pagCalendario.xaml.cs">
+    <Compile Update="Vistas\pagCalendario.xaml.cs">
       <DependentUpon>pagCalendario.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="pagCalendario.xaml">
+    <EmbeddedResource Update="Vistas\pagCalendario.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="pagCrear.xaml">
+    <EmbeddedResource Update="Vistas\pagCrear.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="pagTareas.xaml">
+    <EmbeddedResource Update="Vistas\pagTareas.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
