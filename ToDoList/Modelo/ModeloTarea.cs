@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ToDoList.Modelo
 {
-    class ModeloTarea : INotifyPropertyChanged
+    public class ModeloTarea : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] String titulo = "")
