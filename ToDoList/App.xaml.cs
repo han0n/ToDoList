@@ -16,8 +16,8 @@ namespace ToDoList
             {
                 Children =
                 {
-                    new pagTareas(),
-                    new pagCalendario()
+                    new PagTareas(),
+                    new PagCalendario()
                 }
             };         
 

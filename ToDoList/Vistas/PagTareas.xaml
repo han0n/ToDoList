@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ToDoList.pagTareas"
+             x:Class="ToDoList.PagTareas"
              Title="Tareas">
     <ContentPage.Content>
         <Grid Padding="0,0,0,0" 
@@ -24,7 +24,7 @@
                        VerticalOptions="End"/>
                 
                 <Label Grid.Column="2"
-                       Text="tienes:"
+                       Text=":"
                        FontSize="Medium"
                        VerticalOptions="CenterAndExpand"/>
 
@@ -35,6 +35,17 @@
             quedando el boton de añadir siempre abajo y hasta el final de la página
             como tope, aunque tengo que ver si hay una forma para que se puedan visualizar
             más tareas mediante un scroll-->
+            
+            <ListView x:Name="LvTareas" ItemsSource="{Binding Tareas}" Grid.Row="2">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Titulo}" Detail="{Binding Comentario}">
+
+                        </TextCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
             <Button Text="Crear"
                     x:Name="btnCrear"
                     Grid.ColumnSpan="4"

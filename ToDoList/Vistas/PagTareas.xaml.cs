@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using ToDoList.Modelo;
+using ToDoList.Servicio;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace ToDoList
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class pagTareas : ContentPage
+    public partial class PagTareas : ContentPage
     {
-        public pagTareas()
+        public PagTareas()
         {
             InitializeComponent();
 
@@ -30,13 +32,17 @@ namespace ToDoList
 
 
             btnCrear.Clicked += BtnCrear_Clicked;
+            
+            
+            ObservableCollection<ModeloTarea> listaTareas = new ObservableCollection<ModeloTarea>(new ServicioTarea().Consultar());
+            LvTareas.ItemsSource = listaTareas;
         }
 
         private void BtnCrear_Clicked(object sender, EventArgs e)
         {
             //throw new NotImplementedException();
 
-            pagCrear modalPage = new pagCrear();
+            PagCrear modalPage = new PagCrear();
 
             this.Navigation.PushModalAsync(modalPage);
         }

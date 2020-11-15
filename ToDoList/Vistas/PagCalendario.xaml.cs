@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace ToDoList
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class pagCalendario : ContentPage
+    public partial class PagCalendario : ContentPage
     {
-        public pagCalendario()
+        public PagCalendario()
         {
             InitializeComponent();
         }

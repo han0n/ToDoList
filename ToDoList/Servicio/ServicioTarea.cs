@@ -21,6 +21,8 @@ namespace ToDoList.Servicio
         //Método encargado de retornar las tareas
         public ObservableCollection<ModeloTarea> Consultar()
         {
+            tareas.Add(new ModeloTarea() { Titulo = "Descanso para cigarro", Comentario = "Aturullamiento mental" });
+            tareas.Add(new ModeloTarea() { Titulo = "Seguir desarrollando esta aplicación", Comentario = "Esto es un trabajazo" });
             return tareas;
         }
 

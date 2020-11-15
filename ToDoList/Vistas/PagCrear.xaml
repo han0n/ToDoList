@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ToDoList.pagCrear">
+             x:Class="ToDoList.PagCrear">
     <ContentPage.Content>
         
         <Grid RowDefinitions="Auto, Auto, *"
@@ -13,13 +13,15 @@
                          Grid.ColumnSpan="4">
                 
                 <Button Text="Cancelar"
-                    x:Name="btnCancelar"
-                    HorizontalOptions="StartAndExpand"
-                    VerticalOptions="Start"/>
+                        x:Name="btnCancelar"
+                        HorizontalOptions="StartAndExpand"
+                        VerticalOptions="Start"/>
+                
                 <Button Text="Guardar"
-                    x:Name="btnGuardar"
-                    HorizontalOptions="EndAndExpand"
-                    VerticalOptions="Start"/>
+                        x:Name="btnGuardar"
+                        HorizontalOptions="EndAndExpand"
+                        VerticalOptions="Start"
+                        Command="{Binding GuardarCommand}"/>
                 
             </StackLayout>
 
@@ -27,15 +29,15 @@
                          Grid.ColumnSpan="4">
                 
                 <Label Text="Título de la tarea:"/>
-                <Entry />
+                <Entry Text="{Binding Titulo}"/>
                 
             </StackLayout>
 
             <StackLayout Grid.Row="2"
                          Grid.ColumnSpan="4">
 
-                <Label Text="Comentarios:"/>
-                <Entry />
+                <Label Text="Comentario:"/>
+                <Entry Text="{Binding Comentario}"/>
 
             </StackLayout>
 
