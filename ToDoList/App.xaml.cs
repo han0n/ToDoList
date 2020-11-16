@@ -12,14 +12,7 @@ namespace ToDoList
 
             //MainPage = new MainPage();
 
-            MainPage = new TabbedPage
-            {
-                Children =
-                {
-                    new PagTareas(),
-                    new PagCalendario()
-                }
-            };         
+            MainPage = new PagTareas();       
 
         }
 

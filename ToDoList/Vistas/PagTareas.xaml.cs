@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ToDoList.Modelo;
-using ToDoList.Servicio;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,37 +13,45 @@ namespace ToDoList
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PagTareas : ContentPage
     {
+        ModeloTarea obj_binding;
+        ObservableCollection<ModeloTarea> listaTareas = new ObservableCollection<ModeloTarea>();
+        
+        public PagTareas(ModeloTarea obj_pasado)
+        {
+            InitializeComponent();
+            MuestraFecha();
+
+            obj_binding = obj_pasado;
+            this.listaTareas.Add(obj_binding);
+            LvTareas.ItemsSource = this.listaTareas;
+
+            btnCrear.Clicked += BtnCrear_Clicked;
+        }
         public PagTareas()
         {
             InitializeComponent();
+            MuestraFecha();
 
-            //lblFechaCorta.Text = DateTime.Now.ToShortDateString();
+            btnCrear.Clicked += BtnCrear_Clicked;
+            listaTareas.Add(new ModeloTarea() { Titulo = "Ejemplo ", Comentario = "Esto es un ejemplo de tarea" });
+            LvTareas.ItemsSource = this.listaTareas;
+        }
+
+        private void BtnCrear_Clicked(object sender, EventArgs e)
+        {
+            PagCrear modalPage = new PagCrear();
+
+            this.Navigation.PushModalAsync(modalPage);
+        }
+
+        public void MuestraFecha()
+        {
             var idioma = new System.Globalization.CultureInfo("es-ES");
             var dia = idioma.DateTimeFormat.GetDayName(DateTime.Today.DayOfWeek);
             var fechaDia = DateTime.Now.Day.ToString();
             var mes = idioma.DateTimeFormat.GetMonthName(DateTime.Now.Month);
 
-            lblDiaHoy.Text += dia.ToString();
-            lblDiaHoy.Text += ", ";
-            lblDiaHoy.Text += fechaDia;
-            lblDiaHoy.Text += " de ";
-            lblDiaHoy.Text += mes;
-
-
-            btnCrear.Clicked += BtnCrear_Clicked;
-            
-            
-            ObservableCollection<ModeloTarea> listaTareas = new ObservableCollection<ModeloTarea>(new ServicioTarea().Consultar());
-            LvTareas.ItemsSource = listaTareas;
-        }
-
-        private void BtnCrear_Clicked(object sender, EventArgs e)
-        {
-            //throw new NotImplementedException();
-
-            PagCrear modalPage = new PagCrear();
-
-            this.Navigation.PushModalAsync(modalPage);
+            lblDiaHoy.Text += dia.ToString() + ", " + fechaDia + " de " + mes;
         }
 
     }

@@ -36,7 +36,7 @@
             como tope, aunque tengo que ver si hay una forma para que se puedan visualizar
             más tareas mediante un scroll-->
             
-            <ListView x:Name="LvTareas" ItemsSource="{Binding Tareas}" Grid.Row="2">
+            <ListView x:Name="LvTareas" Grid.Row="2">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextCell Text="{Binding Titulo}" Detail="{Binding Comentario}">
