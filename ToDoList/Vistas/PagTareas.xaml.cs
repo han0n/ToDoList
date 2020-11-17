@@ -13,16 +13,16 @@ namespace ToDoList
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PagTareas : ContentPage
     {
-        ModeloTarea obj_binding;
+        //ModeloTarea obj_binding;
         ObservableCollection<ModeloTarea> listaTareas = new ObservableCollection<ModeloTarea>();
         
-        public PagTareas(ModeloTarea obj_pasado)
+        public PagTareas(ObservableCollection<ModeloTarea> lista_pasada)
         {
             InitializeComponent();
             MuestraFecha();
 
-            obj_binding = obj_pasado;
-            this.listaTareas.Add(obj_binding);
+            this.listaTareas = lista_pasada;
+            //this.listaTareas.Add(obj_binding);
             LvTareas.ItemsSource = this.listaTareas;
 
             btnCrear.Clicked += BtnCrear_Clicked;
@@ -39,9 +39,9 @@ namespace ToDoList
 
         private void BtnCrear_Clicked(object sender, EventArgs e)
         {
-            PagCrear modalPage = new PagCrear();
-
-            this.Navigation.PushModalAsync(modalPage);
+            //PagCrear modalPage = new PagCrear();
+            Navigation.PushModalAsync(new PagCrear(this.listaTareas));
+            //this.Navigation.PushModalAsync(modalPage);
         }
 
         public void MuestraFecha()
