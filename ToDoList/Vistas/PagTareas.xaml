@@ -39,16 +39,30 @@
             <ListView x:Name="LvTareas" Grid.Row="1">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Titulo}" Detail="{Binding Comentario}">
-
-                        </TextCell>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Grid ColumnDefinitions="Auto, *, Auto"
+                                      RowDefinitions="Auto, Auto">
+                                    <Label Text="{Binding Titulo}"
+                                           Grid.Row="0"/>
+                                    <Label Text="{Binding Comentario}"
+                                           Grid.Row="1"/>
+                                    <Button Text="Modificar" 
+                                            x:Name="btnModificar"
+                                            Grid.Row="0"
+                                            Grid.RowSpan="2"
+                                            Grid.Column="2"
+                                            HorizontalOptions="End"/>
+                                </Grid>
+                            </ViewCell.View>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
 
             <Button Text="Crear"
                     x:Name="btnCrear"
-                    Grid.ColumnSpan="4"
+                    Grid.ColumnSpan="3"
                     Grid.Column="0"
                     Grid.Row="2"
                     VerticalOptions="End"/>
