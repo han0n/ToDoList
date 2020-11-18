@@ -15,6 +15,7 @@ namespace ToDoList
     {
         //ModeloTarea obj_binding;
         ObservableCollection<ModeloTarea> listaTareas = new ObservableCollection<ModeloTarea>();
+        public ModeloTarea TareaSeleccionada { get; set; }
         
         public PagTareas(ObservableCollection<ModeloTarea> lista_pasada)
         {
@@ -33,15 +34,26 @@ namespace ToDoList
             MuestraFecha();
 
             btnCrear.Clicked += BtnCrear_Clicked;
-            listaTareas.Add(new ModeloTarea() { Titulo = "Ejemplo ", Comentario = "Esto es un ejemplo de tarea" });
+            listaTareas.Add(new ModeloTarea() 
+            { 
+                Titulo = "Ejemplo ", 
+                Comentario = "Esto es un ejemplo de tarea" 
+            });
             LvTareas.ItemsSource = this.listaTareas;
+            LvTareas.SelectedItem = this.TareaSeleccionada;
+
+            btnBorrar.Clicked += BtnBorrar_Clicked; 
+        }
+
+        private void BtnBorrar_Clicked(object sender, EventArgs e)
+        {
+            //throw new NotImplementedException();
+            listaTareas.Remove(TareaSeleccionada);
         }
 
         private void BtnCrear_Clicked(object sender, EventArgs e)
         {
-            //PagCrear modalPage = new PagCrear();
             Navigation.PushModalAsync(new PagCrear(this.listaTareas));
-            //this.Navigation.PushModalAsync(modalPage);
         }
 
         public void MuestraFecha()
