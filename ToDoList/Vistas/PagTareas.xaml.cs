@@ -13,9 +13,7 @@ namespace ToDoList
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PagTareas : ContentPage
     {
-        //ModeloTarea obj_binding;
         ObservableCollection<ModeloTarea> listaTareas = new ObservableCollection<ModeloTarea>();
-        public ModeloTarea TareaSeleccionada { get; set; }
         
         public PagTareas(ObservableCollection<ModeloTarea> lista_pasada)
         {
@@ -40,15 +38,6 @@ namespace ToDoList
                 Comentario = "Esto es un ejemplo de tarea" 
             });
             LvTareas.ItemsSource = this.listaTareas;
-            LvTareas.SelectedItem = this.TareaSeleccionada;
-
-            btnBorrar.Clicked += BtnBorrar_Clicked; 
-        }
-
-        private void BtnBorrar_Clicked(object sender, EventArgs e)
-        {
-            //throw new NotImplementedException();
-            listaTareas.Remove(TareaSeleccionada);
         }
 
         private void BtnCrear_Clicked(object sender, EventArgs e)
@@ -66,5 +55,11 @@ namespace ToDoList
             lblDiaHoy.Text += dia.ToString() + ", " + fechaDia + " de " + mes;
         }
 
+        private void BtnBorrar_Clicked(object sender, EventArgs e)
+        {
+            var boton = sender as Button;
+            var tarea = boton.BindingContext as ModeloTarea;
+            listaTareas.Remove(tarea);
+        }
     }
 }
