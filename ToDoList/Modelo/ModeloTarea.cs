@@ -43,7 +43,15 @@ namespace ToDoList.Modelo
         {
             return (ModeloTarea)this.MemberwiseClone();
         }
-
-
+        private String prioridad;
+        public String Prioridad
+        {
+            get { return prioridad; }
+            set
+            {
+                prioridad = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

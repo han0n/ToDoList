@@ -21,6 +21,9 @@ namespace ToDoList
 
             BindingContext = this.obj_tarea;
             this.listaTareas = lista_devuelta;
+
+            //Si el usuario no toca el Stepper, no cambia el valor
+            obj_tarea.Prioridad = "LightGreen";// Por ello,será el seleccionado por defecto
         }
 
         public PagCrear(List<ModeloTarea> lista_recibida, ModeloTarea tarea_recibida)
@@ -56,5 +59,31 @@ namespace ToDoList
         {
             this.Navigation.PopModalAsync();
         }
+
+        // Asignación de un color para la Prioridade de un elemento ModeloTarea
+        private void Stepper_ValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            double valor = e.NewValue;
+            
+            if (valor == 2)
+            {
+                obj_tarea.Prioridad = "LightCoral";
+            }
+            else
+            {
+                if (valor == 1)
+                {
+                    obj_tarea.Prioridad = "LightYellow";
+                }
+                else
+                {
+                    if(valor == 0)
+                    {
+                        obj_tarea.Prioridad = "LightGreen";
+                    }
+                }
+            }         
+        }
+
     }
 }

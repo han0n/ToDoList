@@ -4,7 +4,7 @@
              x:Class="ToDoList.PagCrear">
     <ContentPage.Content>
         
-        <Grid RowDefinitions="Auto, Auto, *"
+        <Grid RowDefinitions="Auto, Auto, Auto, *"
               ColumnDefinitions="Auto, Auto, Auto">
             
             <StackLayout Orientation="Horizontal"
@@ -20,8 +20,7 @@
                 <Button Text="Guardar"
                         x:Name="btnGuardar"
                         HorizontalOptions="EndAndExpand"
-                        VerticalOptions="Start"
-                        Command="{Binding GuardarCommand}"/>
+                        VerticalOptions="Start"/>
                 
             </StackLayout>
 
@@ -40,6 +39,22 @@
                 <Entry Text="{Binding Comentario}"/>
 
             </StackLayout>
+
+            <StackLayout Grid.Row="3" Grid.ColumnSpan="4">
+                <Grid RowDefinitions="*, Auto"
+                      ColumnDefinitions="*, *, *">
+                    <Label Text="Prioridad:"/>
+                    <Stepper Grid.Row="1"
+                             Grid.ColumnSpan="4"
+                             BackgroundColor="{Binding Prioridad}"
+                             Minimum="0"
+                             Maximum="2"
+                             Increment="1"
+                             ValueChanged="Stepper_ValueChanged"/>
+                </Grid>
+
+            </StackLayout>
+
 
         </Grid>
         
