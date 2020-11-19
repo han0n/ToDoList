@@ -29,20 +29,24 @@
                        VerticalOptions="CenterAndExpand"/>
             </Grid>
 
-            <ListView x:Name="LvTareas" Grid.Row="1">
+            <ListView x:Name="LvTareas" Grid.Row="1" SelectionMode="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.View>
-                                <Grid ColumnDefinitions="Auto, *, Auto"
+                                <Grid ColumnDefinitions="Auto, *, Auto, Auto"
                                       RowDefinitions="Auto, Auto"
                                       Padding="4,0,0,0">
                                     <Label Text="{Binding Titulo}"
                                            Grid.Row="0"/>
                                     <Label Text="{Binding Comentario}"
                                            Grid.Row="1"/>
-                                    <Button Text="Borrar"
+                                    <Button Text="Modificar"
                                             Grid.Column="2"
+                                            Grid.RowSpan="2"
+                                            Clicked="BtnEditar_Clicked"/>
+                                    <Button Text="Borrar"
+                                            Grid.Column="3"
                                             Grid.RowSpan="2"
                                             Clicked="BtnBorrar_Clicked"/>
                                 </Grid>
