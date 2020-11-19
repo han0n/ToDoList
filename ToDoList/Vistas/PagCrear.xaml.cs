@@ -23,7 +23,7 @@ namespace ToDoList
             this.listaTareas = lista_devuelta;
 
             //Si el usuario no toca el Stepper, no cambia el valor
-            obj_tarea.Prioridad = "LightGreen";// Por ello,será el seleccionado por defecto
+            obj_tarea.Prioridad = "LightYellow";// Por ello,será el seleccionado por defecto
         }
 
         public PagCrear(List<ModeloTarea> lista_recibida, ModeloTarea tarea_recibida)
@@ -64,25 +64,34 @@ namespace ToDoList
         private void Stepper_ValueChanged(object sender, ValueChangedEventArgs e)
         {
             double valor = e.NewValue;
-            
-            if (valor == 2)
+
+            if (valor == 3) 
             {
                 obj_tarea.Prioridad = "LightCoral";
             }
             else
             {
-                if (valor == 1)
+                if (valor == 2)
                 {
-                    obj_tarea.Prioridad = "LightYellow";
+                    obj_tarea.Prioridad = "LightSalmon";
                 }
                 else
                 {
-                    if(valor == 0)
+                    if (valor == 1)
                     {
                         obj_tarea.Prioridad = "LightGreen";
                     }
+                    else
+                    {
+                        if (valor == 0)
+                        {
+                            obj_tarea.Prioridad = "LightYellow";
+                        }
+                    }
                 }
-            }         
+            }
+            
+                  
         }
 
     }

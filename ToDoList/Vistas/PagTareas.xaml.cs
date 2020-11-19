@@ -33,8 +33,9 @@ namespace ToDoList
             btnCrear.Clicked += BtnCrear_Clicked;
             listaTareas.Add(new ModeloTarea() 
             { 
-                Titulo = "Ejemplo ", 
-                Comentario = "Esto es un ejemplo de tarea" 
+                Titulo = "Ejemplo", 
+                Comentario = "Esto es un ejemplo de tarea", 
+                Prioridad = "LightYellow"
             });
             //LvTareas.ItemsSource = this.listaTareas;
             Ordenar();

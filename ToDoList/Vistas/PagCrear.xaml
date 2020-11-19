@@ -2,30 +2,63 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ToDoList.PagCrear">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="BtnAceptar"
+                   TargetType="Button">
+                <Setter Property="BackgroundColor"
+                        Value="Transparent" />
+                <Setter Property="BorderRadius"
+                        Value="0" />
+            </Style>
+
+            <Style x:Key="BtnVolver"
+                   TargetType="Button">
+                <Setter Property="BackgroundColor"
+                            Value="Transparent" />
+                <Setter Property="BorderRadius"
+                            Value="0" />
+            </Style>
+
+            <Style x:Key="Margen"
+                   TargetType="StackLayout">
+                <Setter Property="Padding"
+                        Value="12,2,12,2"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
         
         <Grid RowDefinitions="Auto, Auto, Auto, *"
-              ColumnDefinitions="Auto, Auto, Auto">
+              ColumnDefinitions="Auto, Auto, Auto"
+              BackgroundColor="{Binding Prioridad}"
+              Padding="2,6,2,3" >
             
             <StackLayout Orientation="Horizontal"
                          Grid.Row="0"
                          Grid.Column="0"
-                         Grid.ColumnSpan="4">
-                
-                <Button Text="Cancelar"
+                         Grid.ColumnSpan="4"
+                         Padding="0,0,0,10">
+
+                <Button ImageSource="https://i.imgur.com/dqtYSKj.png"
                         x:Name="btnCancelar"
                         HorizontalOptions="StartAndExpand"
-                        VerticalOptions="Start"/>
-                
-                <Button Text="Guardar"
+                        VerticalOptions="Start"
+                        Style="{StaticResource BtnVolver}"/>
+
+                <Button ImageSource="https://i.imgur.com/qjmQg5w.png"
                         x:Name="btnGuardar"
                         HorizontalOptions="EndAndExpand"
-                        VerticalOptions="Start"/>
+                        VerticalOptions="Start"
+                        Style="{StaticResource BtnAceptar}"/>
                 
             </StackLayout>
 
             <StackLayout Grid.Row="1"
-                         Grid.ColumnSpan="4">
+                         Grid.ColumnSpan="4"
+                         Style="{StaticResource Margen}">
                 
                 <Label Text="Título de la tarea:"/>
                 <Entry Text="{Binding Titulo}"/>
@@ -33,22 +66,23 @@
             </StackLayout>
 
             <StackLayout Grid.Row="2"
-                         Grid.ColumnSpan="4">
+                         Grid.ColumnSpan="4"
+                         Style="{StaticResource Margen}">
 
                 <Label Text="Comentario:"/>
                 <Entry Text="{Binding Comentario}"/>
 
             </StackLayout>
 
-            <StackLayout Grid.Row="3" Grid.ColumnSpan="4">
+            <StackLayout Grid.Row="3" Grid.ColumnSpan="4"
+                         Style="{StaticResource Margen}">
                 <Grid RowDefinitions="*, Auto"
                       ColumnDefinitions="*, *, *">
                     <Label Text="Prioridad:"/>
                     <Stepper Grid.Row="1"
                              Grid.ColumnSpan="4"
-                             BackgroundColor="{Binding Prioridad}"
                              Minimum="0"
-                             Maximum="2"
+                             Maximum="3"
                              Increment="1"
                              ValueChanged="Stepper_ValueChanged"/>
                 </Grid>

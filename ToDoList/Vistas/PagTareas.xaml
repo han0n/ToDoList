@@ -3,10 +3,58 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ToDoList.PagTareas"
              Title="Tareas">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            
+            <Style x:Key="BtnBorrar"
+                   TargetType="Button">
+                <Setter Property="BackgroundColor"
+                        Value="Crimson" />
+                <Setter Property="BorderRadius"
+                        Value="2" />
+            </Style>
+            
+            <Style x:Key="BtnEditar"
+                   TargetType="Button">
+                <Setter Property="BackgroundColor"
+                        Value="NavajoWhite" />
+                <Setter Property="BorderRadius"
+                        Value="2" />
+            </Style>
+
+            <Style x:Key="BtnCrear"
+                   TargetType="Button">
+                <Setter Property="BackgroundColor"
+                        Value="LightSkyBlue" />
+                <Setter Property="BorderRadius"
+                        Value="2" />
+            </Style>
+
+            <Style x:Key="Titulo"
+                   TargetType="Label">
+                <Setter Property="FontSize"
+                        Value="Medium"/>
+                <Setter Property="FontAttributes"
+                        Value="Italic"/>
+                <Setter Property="TextColor"
+                        Value="DimGray"/>
+                
+            </Style>
+            <Style x:Key="Comentario"
+                   TargetType="Label">
+                <Setter Property="FontAttributes"
+                        Value="Italic"/>
+                <Setter Property="TextColor"
+                        Value="LightSlateGray"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
-        <Grid Padding="0,0,0,0" 
+        <Grid Padding="2,6,2,2" 
               RowDefinitions="Auto, *, Auto" 
-              ColumnDefinitions="Auto">
+              ColumnDefinitions="Auto"
+              BackgroundColor="LightYellow">
             <Grid Grid.Row="0"
                   RowDefinitions="Auto"
                   ColumnDefinitions="Auto, Auto, Auto"
@@ -34,22 +82,32 @@
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.View>
-                                <Grid ColumnDefinitions="Auto, *, Auto, Auto"
-                                      RowDefinitions="Auto, Auto"
-                                      Padding="4,0,0,0"
+                                <Grid ColumnDefinitions="Auto, 20*, 3*, 3*"
+                                      RowDefinitions="Auto, 8*, Auto, 11*"
+                                      Padding="4,2,4,2"
                                       BackgroundColor="{Binding Prioridad}">
+                                    <Switch Grid.Column="0"
+                                            Grid.RowSpan="4"/>
                                     <Label Text="{Binding Titulo}"
-                                           Grid.Row="0"/>
+                                           Grid.Row="0"
+                                           Grid.Column="1"
+                                           Grid.RowSpan="4"
+                                           Style="{StaticResource Titulo}"/>
                                     <Label Text="{Binding Comentario}"
-                                           Grid.Row="1"/>
-                                    <Button Text="Editar"
+                                           Grid.Row="2"
+                                           Grid.Column="1"
+                                           Grid.RowSpan="2"
+                                           Style="{StaticResource Comentario}"/>
+                                    <Button ImageSource="https://i.imgur.com/5tx2FnY.png"
                                             Grid.Column="2"
-                                            Grid.RowSpan="2"
-                                            Clicked="BtnEditar_Clicked"/>
-                                    <Button Text="Borrar"
+                                            Grid.RowSpan="4"
+                                            Clicked="BtnEditar_Clicked"
+                                            Style="{StaticResource BtnEditar}"/>
+                                    <Button ImageSource="https://i.imgur.com/IyvIO4U.png"
                                             Grid.Column="3"
-                                            Grid.RowSpan="2"
-                                            Clicked="BtnBorrar_Clicked"/>
+                                            Grid.RowSpan="4"
+                                            Clicked="BtnBorrar_Clicked"
+                                            Style="{StaticResource BtnBorrar}"/>
                                 </Grid>
                             </ViewCell.View>
                         </ViewCell>
@@ -58,8 +116,9 @@
             </ListView>
 
             <StackLayout Grid.Row="2">
-                <Button Text="Crear"
-                        x:Name="btnCrear"/>
+                <Button ImageSource="https://i.imgur.com/1t7Hacc.png"
+                        x:Name="btnCrear"
+                        Style="{StaticResource BtnCrear}"/>
             </StackLayout>
 
         </Grid>
