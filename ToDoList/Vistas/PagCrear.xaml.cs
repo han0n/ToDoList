@@ -29,33 +29,32 @@ namespace ToDoList
             btnCancelar.Clicked += BtnCancelar_Clicked;
             btnGuardar.Clicked += BtnGuardar_Clicked;
 
-            this.obj_tarea = tarea_recibida; // Porque en el método de Guardar refiere a obj_tarea
-            this.obj_recibido = tarea_recibida; // Para que se guarde por si cancela
+            this.obj_recibido = tarea_recibida; // Porque en el método de Guardar refiere a obj_tarea
+            this.obj_tarea = tarea_recibida.ObtenerCopia(); // Para que se guarde por si cancela
             
             this.listaTareas = lista_recibida; // Se necesita porque la clase no guarda el ObservableCollection<ModeloTarea> listaTareas
             
-
-            BindingContext = tarea_recibida; //Parece el mismo, pero los valores de obj_tarea son los de tarea_recibida
+            BindingContext = obj_tarea; //Parece el mismo, pero los valores de obj_tarea son los de tarea_recibida
         }
 
         private void BtnGuardar_Clicked(object sender, EventArgs e)
         {
-            this.listaTareas.Remove(this.obj_recibido);
-            listaTareas.Add(obj_tarea);
+            if(obj_recibido != null)
+            {
+                this.listaTareas.Remove(obj_recibido);
+                listaTareas.Add(obj_tarea);
+            }
+            else
+            {
+                listaTareas.Add(obj_tarea);
+            }
+            
             Navigation.PushModalAsync(new PagTareas(listaTareas));
         }
 
         private void BtnCancelar_Clicked(object sender, EventArgs e)
         {
-            //this.listaTareas.Remove(this.obj_tarea);
-            //listaTareas.Add(obj_recibido);
             this.Navigation.PopModalAsync();
-            // Si ha recibido algún objeto (si se han pasado dos parametros a PagCrear en vez de uno)
-            /*if (this.obj_recibido != null)
-            {
-                this.listaTareas.Add(obj_recibido); // Se añade de nuevo a listaTareas
-            }*/
-
         }
     }
 }

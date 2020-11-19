@@ -28,7 +28,6 @@ namespace ToDoList.Modelo
 
         private String comentario;
 
-        
 
         public String Comentario
         {
@@ -38,6 +37,11 @@ namespace ToDoList.Modelo
                 comentario = value;
                 OnPropertyChanged();
             }
+        }
+
+        public ModeloTarea ObtenerCopia()
+        {
+            return (ModeloTarea)this.MemberwiseClone();
         }
 
 
