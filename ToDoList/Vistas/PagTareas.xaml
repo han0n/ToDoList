@@ -85,7 +85,7 @@
                                 <Grid ColumnDefinitions="Auto, 20*, 3*, 3*"
                                       RowDefinitions="Auto, 8*, Auto, 11*"
                                       Padding="4,2,4,2"
-                                      BackgroundColor="{Binding Prioridad}">
+                                      BackgroundColor="{Binding Color}">
                                     <Switch Grid.Column="0"
                                             Grid.RowSpan="4"/>
                                     <Label Text="{Binding Titulo}"

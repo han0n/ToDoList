@@ -14,6 +14,8 @@ namespace ToDoList.Modelo
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(titulo));
         }
 
+        #region Respecto a lo Descriptivo
+
         private String titulo;
 
         public String Titulo
@@ -27,8 +29,7 @@ namespace ToDoList.Modelo
         }
 
         private String comentario;
-
-
+        // Comentario de la tarea, observación
         public String Comentario
         {
             get { return comentario; }
@@ -38,20 +39,51 @@ namespace ToDoList.Modelo
                 OnPropertyChanged();
             }
         }
+        #endregion
 
+        // Para que al modificar no se quede guardado si se descarta
         public ModeloTarea ObtenerCopia()
         {
             return (ModeloTarea)this.MemberwiseClone();
         }
-        private String prioridad;
-        public String Prioridad
+
+        #region Respecto a la Prioridad
+
+        // Color según el tipo de prioridad
+        private String c_prioridad;
+        public String Color
         {
-            get { return prioridad; }
+            get { return c_prioridad; }
             set
             {
-                prioridad = value;
+                c_prioridad = value;
                 OnPropertyChanged();
             }
         }
+
+        // Valor numérico del Stepper
+        private int v_prioridad;
+        public int ValorStpr
+        {
+            get { return v_prioridad; }
+            set
+            {
+                v_prioridad = value;
+                OnPropertyChanged();
+            }
+        }
+
+        // Nombre de la prioridad: Alta, Media, Baja o Sin categoría
+        private String i_prioridad;
+        public String Prioridad
+        {
+            get { return i_prioridad; }
+            set
+            {
+                i_prioridad = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
     }
 }

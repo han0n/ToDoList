@@ -33,7 +33,7 @@
         
         <Grid RowDefinitions="Auto, Auto, Auto, *"
               ColumnDefinitions="Auto, Auto, Auto"
-              BackgroundColor="{Binding Prioridad}"
+              BackgroundColor="{Binding Color}"
               Padding="2,6,2,3" >
             
             <StackLayout Orientation="Horizontal"
@@ -76,14 +76,18 @@
 
             <StackLayout Grid.Row="3" Grid.ColumnSpan="4"
                          Style="{StaticResource Margen}">
-                <Grid RowDefinitions="*, Auto"
-                      ColumnDefinitions="*, *, *">
-                    <Label Text="Prioridad:"/>
-                    <Stepper Grid.Row="1"
-                             Grid.ColumnSpan="4"
+                <Grid RowDefinitions="*, *, 2*"
+                      ColumnDefinitions="*, Auto, *">
+                    <Label Grid.Column="0" Text="Prioridad:"/>
+                    <Label Grid.Column="1" Text="{Binding Prioridad}" 
+                           HorizontalOptions="CenterAndExpand"
+                           Grid.Row="1"/>
+                    <Stepper Grid.Row="2"
+                             Grid.Column="1"
                              Minimum="0"
                              Maximum="3"
                              Increment="1"
+                             Value="{Binding ValorStpr}"
                              ValueChanged="Stepper_ValueChanged"/>
                 </Grid>
 

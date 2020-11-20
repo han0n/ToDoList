@@ -23,7 +23,8 @@ namespace ToDoList
             this.listaTareas = lista_devuelta;
 
             //Si el usuario no toca el Stepper, no cambia el valor
-            obj_tarea.Prioridad = "LightYellow";// Por ello,será el seleccionado por defecto
+            obj_tarea.Color = "LightYellow";// Por ello, será el seleccionado por defecto
+            obj_tarea.Prioridad = "Ninguna";// Aquí también
         }
 
         public PagCrear(List<ModeloTarea> lista_recibida, ModeloTarea tarea_recibida)
@@ -67,25 +68,29 @@ namespace ToDoList
 
             if (valor == 3) 
             {
-                obj_tarea.Prioridad = "LightCoral";
+                obj_tarea.Color = "LightCoral";
+                obj_tarea.Prioridad = "Alta";
             }
             else
             {
                 if (valor == 2)
                 {
-                    obj_tarea.Prioridad = "LightSalmon";
+                    obj_tarea.Color = "LightSalmon";
+                    obj_tarea.Prioridad = "Media";
                 }
                 else
                 {
                     if (valor == 1)
                     {
-                        obj_tarea.Prioridad = "LightGreen";
+                        obj_tarea.Color = "LightGreen";
+                        obj_tarea.Prioridad = "Baja";
                     }
                     else
                     {
                         if (valor == 0)
                         {
-                            obj_tarea.Prioridad = "LightYellow";
+                            obj_tarea.Color = "LightYellow";
+                            obj_tarea.Prioridad = "Ninguna";
                         }
                     }
                 }
