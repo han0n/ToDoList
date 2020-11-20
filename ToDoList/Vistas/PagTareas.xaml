@@ -77,7 +77,7 @@
                        VerticalOptions="CenterAndExpand"/>
             </Grid>
 
-            <ListView x:Name="LvTareas" Grid.Row="1" SelectionMode="None">
+            <ListView x:Name="LvTareas" Grid.Row="1" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -86,7 +86,8 @@
                                       RowDefinitions="Auto, 8*, Auto, 11*"
                                       Padding="4,2,4,2"
                                       BackgroundColor="{Binding Color}">
-                                    <Switch Grid.Column="0"
+                                    <Switch IsToggled="{Binding Completada}" 
+                                            Grid.Column="0"
                                             Grid.RowSpan="4"/>
                                     <Label Text="{Binding Titulo}"
                                            Grid.Row="0"

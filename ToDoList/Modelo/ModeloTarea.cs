@@ -85,5 +85,16 @@ namespace ToDoList.Modelo
             }
         }
         #endregion
+
+        private bool completada;
+        public bool Completada
+        {
+            get { return completada; }
+            set
+            {
+                completada = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

@@ -24,6 +24,7 @@ namespace ToDoList
             Ordenar();
 
             btnCrear.Clicked += BtnCrear_Clicked;
+            LvTareas.ItemTapped += LvTareas_ItemTapped;
         }
         public PagTareas()
         {
@@ -37,11 +38,24 @@ namespace ToDoList
                 Comentario = "Esto es un ejemplo de tarea",
                 Prioridad = "Ninguna",
                 Color = "LightYellow",
-                ValorStpr = 0
-
+                ValorStpr = 0,
+                Completada = true
             });
             //LvTareas.ItemsSource = this.listaTareas;
             Ordenar();
+            LvTareas.ItemTapped += LvTareas_ItemTapped;
+        }
+
+        private void LvTareas_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            //var lv = sender as ListView;
+            var tarea = e.Item as ModeloTarea;
+            //var tarea = lv.BindingContext as ModeloTarea;
+
+            if(tarea.Completada != false) 
+                { tarea.Completada = false; }
+            else 
+                { tarea.Completada = true; }
         }
 
         private void BtnCrear_Clicked(object sender, EventArgs e)
