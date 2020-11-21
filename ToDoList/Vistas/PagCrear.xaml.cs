@@ -21,10 +21,8 @@ namespace ToDoList
 
             BindingContext = this.obj_tarea;
             this.listaTareas = lista_devuelta;
-
-            //Si el usuario no toca el Stepper, no cambia el valor
-            obj_tarea.Color = "LightYellow";// Por ello, será el seleccionado por defecto
-            obj_tarea.Prioridad = "Ninguna";// Aquí también
+            SetColorPrioridad();
+            
         }
 
         public PagCrear(List<ModeloTarea> lista_recibida, ModeloTarea tarea_recibida)
@@ -41,6 +39,7 @@ namespace ToDoList
             BindingContext = obj_tarea; //Parece el mismo, pero los valores de obj_tarea son los de tarea_recibida
         }
 
+        #region Btn_Clicked
         private void BtnGuardar_Clicked(object sender, EventArgs e)
         {
             if(obj_recibido != null)
@@ -52,8 +51,18 @@ namespace ToDoList
             {
                 listaTareas.Add(obj_tarea);
             }
-            
-            Navigation.PushModalAsync(new PagTareas(listaTareas));
+            // Si no se da un Titulo a la tarea, esta no se crea y salta Mensaje por pantalla
+            if(obj_tarea.Titulo != null && obj_tarea.Titulo.Trim() != "")
+            {
+                Navigation.PushModalAsync(new PagTareas(listaTareas));
+            }
+            else
+            {
+                listaTareas.Remove(obj_tarea);
+                Navigation.PopModalAsync();
+                DisplayAlert("", "No se ha creado ninguna tarea", "Aceptar");
+            }
+                
         }
 
         private void BtnCancelar_Clicked(object sender, EventArgs e)
@@ -61,12 +70,16 @@ namespace ToDoList
             this.Navigation.PopModalAsync();
         }
 
+        #endregion
+
+        #region Elemento_ValueChanged
+
         // Asignación de un color para la Prioridade de un elemento ModeloTarea
         private void Stepper_ValueChanged(object sender, ValueChangedEventArgs e)
         {
             double valor = e.NewValue;
 
-            if (valor == 3) 
+            if (valor == 3)
             {
                 obj_tarea.Color = "LightCoral";
                 obj_tarea.Prioridad = "Alta";
@@ -95,9 +108,44 @@ namespace ToDoList
                     }
                 }
             }
-            
-                  
+
+
         }
+        
+        // Límite de caracteres aplicados a los Entry
+        private void Comentario_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var entry = (Entry)sender;
+            entry.MaxLength = 33;
+
+            if (entry.Text.Length > entry.MaxLength)
+            {
+                entry.Text = entry.Text.Remove(5);
+            }
+        }
+
+        private void Titulo_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var entry = (Entry)sender;
+            entry.MaxLength = 26;
+
+            if (entry.Text.Length > entry.MaxLength)
+            {
+                entry.Text = entry.Text.Remove(5);
+            }
+        }
+
+        #endregion
+
+        #region ValueSet
+        private void SetColorPrioridad()
+        {
+            //Si el usuario no toca el Stepper, no cambia el valor
+            obj_tarea.Color = "LightYellow";// Por ello, será el seleccionado por defecto
+            obj_tarea.Prioridad = "Ninguna";// Aquí también
+        }
+
+        #endregion
 
     }
 }

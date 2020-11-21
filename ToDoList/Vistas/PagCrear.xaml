@@ -5,27 +5,41 @@
     <ContentPage.Resources>
         <ResourceDictionary>
 
-            <Style x:Key="BtnAceptar"
-                   TargetType="Button">
-                <Setter Property="BackgroundColor"
-                        Value="Transparent" />
-                <Setter Property="BorderRadius"
-                        Value="0" />
+            <Style TargetType="Button" x:Key="BtnAceptar">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="BorderRadius" Value="0" />
+                <Setter Property="ImageSource" Value="https://i.imgur.com/qjmQg5w.png"/>
             </Style>
 
-            <Style x:Key="BtnVolver"
-                   TargetType="Button">
-                <Setter Property="BackgroundColor"
-                            Value="Transparent" />
-                <Setter Property="BorderRadius"
-                            Value="0" />
+            <Style TargetType="Button" x:Key="BtnVolver">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="BorderRadius" Value="0" />
+                <Setter Property="ImageSource" Value="https://i.imgur.com/dqtYSKj.png"/>
             </Style>
 
-            <Style x:Key="Margen"
-                   TargetType="StackLayout">
-                <Setter Property="Padding"
-                        Value="12,2,12,2"/>
+            <Style TargetType="Entry">
+                <Setter Property="Margin" Value="20, 0" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontAttributes" Value="None"/>
+                <Setter Property="TextColor" Value="#FF444444"/>
             </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontAttributes" Value="Italic"/>
+                <Setter Property="TextColor" Value="DimGray"/>
+            </Style>
+
+            <Style TargetType="Label" x:Key="Prioridad">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontAttributes" Value="None"/>
+                <Setter Property="TextColor" Value="#FF444444"/>
+            </Style>
+
+            <Style x:Key="Margen" TargetType="StackLayout">
+                <Setter Property="Padding" Value="12,2,12,2"/>
+            </Style>
+
         </ResourceDictionary>
     </ContentPage.Resources>
     
@@ -40,16 +54,14 @@
                          Grid.Row="0"
                          Grid.Column="0"
                          Grid.ColumnSpan="4"
-                         Padding="0,0,0,10">
+                         Padding="0,0,0,20">
 
-                <Button ImageSource="https://i.imgur.com/dqtYSKj.png"
-                        x:Name="btnCancelar"
+                <Button x:Name="btnCancelar"
                         HorizontalOptions="StartAndExpand"
                         VerticalOptions="Start"
                         Style="{StaticResource BtnVolver}"/>
 
-                <Button ImageSource="https://i.imgur.com/qjmQg5w.png"
-                        x:Name="btnGuardar"
+                <Button x:Name="btnGuardar"
                         HorizontalOptions="EndAndExpand"
                         VerticalOptions="Start"
                         Style="{StaticResource BtnAceptar}"/>
@@ -61,7 +73,8 @@
                          Style="{StaticResource Margen}">
                 
                 <Label Text="Título de la tarea:"/>
-                <Entry Text="{Binding Titulo}"/>
+                <Entry Text="{Binding Titulo}"
+                       TextChanged="Titulo_TextChanged"/>
                 
             </StackLayout>
 
@@ -70,7 +83,8 @@
                          Style="{StaticResource Margen}">
 
                 <Label Text="Comentario:"/>
-                <Entry Text="{Binding Comentario}"/>
+                <Entry Text="{Binding Comentario}" 
+                       TextChanged="Comentario_TextChanged"/>
 
             </StackLayout>
 
@@ -78,10 +92,14 @@
                          Style="{StaticResource Margen}">
                 <Grid RowDefinitions="*, *, 2*"
                       ColumnDefinitions="*, Auto, *">
+                    
                     <Label Grid.Column="0" Text="Prioridad:"/>
+                    
                     <Label Grid.Column="1" Text="{Binding Prioridad}" 
                            HorizontalOptions="CenterAndExpand"
-                           Grid.Row="1"/>
+                           Grid.Row="1"
+                           Style="{StaticResource Prioridad}"/>
+                    
                     <Stepper Grid.Row="2"
                              Grid.Column="1"
                              Minimum="0"
@@ -89,6 +107,7 @@
                              Increment="1"
                              Value="{Binding ValorStpr}"
                              ValueChanged="Stepper_ValueChanged"/>
+                    
                 </Grid>
 
             </StackLayout>

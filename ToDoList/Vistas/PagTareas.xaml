@@ -6,78 +6,101 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             
-            <Style x:Key="BtnBorrar"
-                   TargetType="Button">
-                <Setter Property="BackgroundColor"
-                        Value="Crimson" />
-                <Setter Property="BorderRadius"
-                        Value="2" />
+            <Style x:Key="BtnBorrar" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="IndianRed" />
+                <Setter Property="BorderRadius" Value="2" />
+                <Setter Property="ImageSource" Value="https://i.imgur.com/IyvIO4U.png"/>
             </Style>
             
-            <Style x:Key="BtnEditar"
-                   TargetType="Button">
-                <Setter Property="BackgroundColor"
-                        Value="NavajoWhite" />
-                <Setter Property="BorderRadius"
-                        Value="2" />
+            <Style x:Key="BtnEditar" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="NavajoWhite" />
+                <Setter Property="BorderRadius" Value="2" />
+                <Setter Property="ImageSource" Value="https://i.imgur.com/5tx2FnY.png"/>
             </Style>
 
-            <Style x:Key="BtnCrear"
-                   TargetType="Button">
-                <Setter Property="BackgroundColor"
-                        Value="LightSkyBlue" />
-                <Setter Property="BorderRadius"
-                        Value="2" />
+            <Style x:Key="BtnCrear" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="LightSkyBlue" />
+                <Setter Property="BorderRadius" Value="2" />
+                <Setter Property="ImageSource" Value="https://i.imgur.com/1t7Hacc.png"/>
             </Style>
 
-            <Style x:Key="Titulo"
-                   TargetType="Label">
-                <Setter Property="FontSize"
-                        Value="Medium"/>
-                <Setter Property="FontAttributes"
-                        Value="Italic"/>
-                <Setter Property="TextColor"
-                        Value="DimGray"/>
-                
+            <Style x:Key="Encabezado" TargetType="Label">
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="FontAttributes" Value="Italic"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
             </Style>
-            <Style x:Key="Comentario"
-                   TargetType="Label">
-                <Setter Property="FontAttributes"
-                        Value="Italic"/>
-                <Setter Property="TextColor"
-                        Value="LightSlateGray"/>
+
+            <Style x:Key="Titulo" TargetType="Label">
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="FontAttributes" Value="Italic"/>
+                <Setter Property="TextColor" Value="DimGray"/>
             </Style>
+            
+            <Style x:Key="Comentario" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Italic"/>
+                <Setter Property="TextColor" Value="Gray"/>
+            </Style>
+            
+            <Style x:Key="Fecha" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold, Italic"/>
+                <Setter Property="TextColor" Value="DimGray"/>
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+
+            <Style TargetType="ListView">
+                <Setter Property="HorizontalScrollBarVisibility" Value="Never"/>
+            </Style>
+
+            <Style TargetType="Switch">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="On">
+                                <VisualState.Setters>
+                                    <Setter Property="ThumbColor" Value="LightSkyBlue" />
+                                    <Setter Property="OnColor" Value="LightGoldenRodYellow"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Off">
+                                <VisualState.Setters>
+                                    <Setter Property="ThumbColor" Value="IndianRed" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+    
         </ResourceDictionary>
     </ContentPage.Resources>
     
     <ContentPage.Content>
-        <Grid Padding="2,6,2,2" 
-              RowDefinitions="Auto, *, Auto" 
+        <Grid Padding="2,2,2,2" 
+              RowDefinitions="Auto, Auto, Auto" 
               ColumnDefinitions="Auto"
               BackgroundColor="LightYellow">
-            <Grid Grid.Row="0"
-                  RowDefinitions="Auto"
+            
+            <Grid Grid.Row="0" RowDefinitions="Auto"
                   ColumnDefinitions="Auto, Auto, Auto"
-                  Padding="4,8,4,0">
+                  Padding="14,28,0,22">
 
                 <Label Grid.Column="0"
                        Text="Para hoy"
-                       FontSize="Medium"
-                       VerticalOptions="CenterAndExpand"/>
+                       Style="{StaticResource Encabezado}"/>
 
                 <Label Grid.Column="1"  
-                       x:Name="lblDiaHoy" 
-                       FontAttributes="Bold"
-                       FontSize="22"
-                       VerticalOptions="End"/>
+                       x:Name="lblDiaHoy"
+                       Style="{StaticResource Fecha}"/>
 
                 <Label Grid.Column="2"
                        Text=":"
-                       FontSize="Medium"
-                       VerticalOptions="CenterAndExpand"/>
+                       Style="{StaticResource Encabezado}"/>
             </Grid>
 
-            <ListView x:Name="LvTareas" Grid.Row="1" >
+            <ListView x:Name="LvTareas" Grid.Row="1" SelectionMode="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -86,26 +109,29 @@
                                       RowDefinitions="Auto, 8*, Auto, 11*"
                                       Padding="4,2,4,2"
                                       BackgroundColor="{Binding Color}">
+                                    
                                     <Switch IsToggled="{Binding Completada}" 
                                             Grid.Column="0"
                                             Grid.RowSpan="4"/>
+
                                     <Label Text="{Binding Titulo}"
                                            Grid.Row="0"
                                            Grid.Column="1"
                                            Grid.RowSpan="4"
                                            Style="{StaticResource Titulo}"/>
+                                    
                                     <Label Text="{Binding Comentario}"
                                            Grid.Row="2"
                                            Grid.Column="1"
                                            Grid.RowSpan="2"
                                            Style="{StaticResource Comentario}"/>
-                                    <Button ImageSource="https://i.imgur.com/5tx2FnY.png"
-                                            Grid.Column="2"
+                                    
+                                    <Button Grid.Column="2"
                                             Grid.RowSpan="4"
                                             Clicked="BtnEditar_Clicked"
                                             Style="{StaticResource BtnEditar}"/>
-                                    <Button ImageSource="https://i.imgur.com/IyvIO4U.png"
-                                            Grid.Column="3"
+                                    
+                                    <Button Grid.Column="3"
                                             Grid.RowSpan="4"
                                             Clicked="BtnBorrar_Clicked"
                                             Style="{StaticResource BtnBorrar}"/>
@@ -117,9 +143,7 @@
             </ListView>
 
             <StackLayout Grid.Row="2">
-                <Button ImageSource="https://i.imgur.com/1t7Hacc.png"
-                        x:Name="btnCrear"
-                        Style="{StaticResource BtnCrear}"/>
+                <Button x:Name="btnCrear" Style="{StaticResource BtnCrear}"/>
             </StackLayout>
 
         </Grid>

@@ -86,6 +86,7 @@ namespace ToDoList.Modelo
         }
         #endregion
 
+        // Estado del Switch
         private bool completada;
         public bool Completada
         {
