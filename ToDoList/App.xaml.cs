@@ -9,7 +9,7 @@ namespace ToDoList
         public App()
         {
             InitializeComponent();
-
+            Device.SetFlags(new string[] { "Shapes_Experimental" });
             //MainPage = new MainPage();
 
             MainPage = new PagTareas();       
