@@ -9,27 +9,22 @@ namespace ToDoList
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PagCrear : ContentPage
     {
-        ModeloTarea obj_tarea = new ModeloTarea();
-        List<ModeloTarea> listaTareas = new List<ModeloTarea>();
-        ModeloTarea obj_recibido = new ModeloTarea();
+        private ModeloTarea obj_tarea = new ModeloTarea();
+        private List<ModeloTarea> listaTareas = new List<ModeloTarea>();
+        private ModeloTarea obj_recibido = new ModeloTarea();
         
         public PagCrear(List<ModeloTarea> lista_devuelta)
         {
             InitializeComponent();
-            btnCancelar.Clicked += BtnCancelar_Clicked;
-            btnGuardar.Clicked += BtnGuardar_Clicked;
 
             BindingContext = this.obj_tarea;
             this.listaTareas = lista_devuelta;
             SetColorPrioridad();
-            
         }
 
         public PagCrear(List<ModeloTarea> lista_recibida, ModeloTarea tarea_recibida)
         {
             InitializeComponent();
-            btnCancelar.Clicked += BtnCancelar_Clicked;
-            btnGuardar.Clicked += BtnGuardar_Clicked;
 
             this.obj_recibido = tarea_recibida; // Porque en el método de Guardar refiere a obj_tarea
             this.obj_tarea = tarea_recibida.ObtenerCopia(); // Para que se guarde por si cancela
@@ -40,6 +35,7 @@ namespace ToDoList
         }
 
         #region Btn_Clicked
+
         private void BtnGuardar_Clicked(object sender, EventArgs e)
         {
             if(obj_recibido != null)
@@ -120,7 +116,7 @@ namespace ToDoList
 
             if (entry.Text.Length > entry.MaxLength)
             {
-                entry.Text = entry.Text.Remove(5);
+                entry.Text = entry.Text.Remove(32);
             }
         }
 
@@ -131,13 +127,14 @@ namespace ToDoList
 
             if (entry.Text.Length > entry.MaxLength)
             {
-                entry.Text = entry.Text.Remove(5);
+                entry.Text = entry.Text.Remove(25);
             }
         }
 
         #endregion
 
         #region ValueSet
+
         private void SetColorPrioridad()
         {
             //Si el usuario no toca el Stepper, no cambia el valor

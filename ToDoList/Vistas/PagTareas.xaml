@@ -77,13 +77,13 @@
             <Style TargetType="Line">
                 <Setter Property="X1" Value="0"/>
                 <Setter Property="Y1" Value="0"/>
-                <Setter Property="X2" Value="400"/>
+                <Setter Property="X2" Value="300"/>
                 <Setter Property="Y2" Value="-2"/>
                 <Setter Property="Stroke" Value="DimGray"/>
-                <Setter Property="StrokeThickness" Value="3"/>
+                <Setter Property="StrokeThickness" Value="4"/>
                 <Setter Property="StrokeDashArray" Value="1, 2"/>
                 <Setter Property="StrokeDashOffset" Value="6"/>
-                <Setter Property="Grid.ColumnSpan" Value="4"/>
+                <Setter Property="Grid.ColumnSpan" Value="3"/>
             </Style>
     
         </ResourceDictionary>
@@ -95,14 +95,14 @@
               ColumnDefinitions="Auto"
               BackgroundColor="LightYellow">
             
-            <Grid Grid.Row="0" RowDefinitions="Auto, Auto, Auto"
-                  ColumnDefinitions="Auto, Auto, Auto"
+            <Grid Grid.Row="0" RowDefinitions="2*, Auto, 6*"
+                  ColumnDefinitions="Auto, Auto"
                   Padding="14,28,0,22">
 
                 <Line Grid.Row="0"/>
 
                 <Label Grid.Column="0"
-                       Text="Para hoy"
+                       Text=" Para hoy"
                        Style="{StaticResource Encabezado}"
                        Grid.Row="1"/>
 
@@ -111,16 +111,11 @@
                        Style="{StaticResource Fecha}"
                        Grid.Row="1"/>
 
-                <Label Grid.Column="2"
-                       Text=":"
-                       Style="{StaticResource Encabezado}"
-                       Grid.Row="1"/>
-                
-                <Line Grid.Row="2"/>
+                <Line Grid.Row="2" VerticalOptions="End"/>
                 
             </Grid>
 
-            <ListView x:Name="LvTareas" Grid.Row="1" SelectionMode="None">
+            <ListView x:Name="LvTareas" ItemTapped="LvTareas_ItemTapped" Grid.Row="1" SelectionMode="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -164,7 +159,7 @@
             </ListView>
 
             <StackLayout Grid.Row="2">
-                <Button x:Name="btnCrear" Style="{StaticResource BtnCrear}"/>
+                <Button Clicked="BtnCrear_Clicked" Style="{StaticResource BtnCrear}"/>
             </StackLayout>
 
         </Grid>

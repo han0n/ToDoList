@@ -22,6 +22,7 @@
                 <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="FontAttributes" Value="None"/>
                 <Setter Property="TextColor" Value="#FF444444"/>
+                <Setter Property="Keyboard" Value="Text"/>
             </Style>
 
             <Style TargetType="Label">
@@ -40,6 +41,12 @@
                 <Setter Property="Padding" Value="16,2,16,2"/>
             </Style>
 
+            <Style TargetType="Stepper">
+                <Setter Property="Minimum" Value="0"/>
+                <Setter Property="Maximum" Value="3"/>
+                <Setter Property="Increment" Value="1"/>
+            </Style>
+
         </ResourceDictionary>
     </ContentPage.Resources>
     
@@ -56,12 +63,12 @@
                          Grid.ColumnSpan="4"
                          Padding="0,0,0,20">
 
-                <Button x:Name="btnCancelar"
+                <Button Clicked="BtnCancelar_Clicked" 
                         HorizontalOptions="StartAndExpand"
                         VerticalOptions="Start"
                         Style="{StaticResource BtnVolver}"/>
 
-                <Button x:Name="btnGuardar"
+                <Button Clicked="BtnGuardar_Clicked"
                         HorizontalOptions="EndAndExpand"
                         VerticalOptions="Start"
                         Style="{StaticResource BtnAceptar}"/>
@@ -74,6 +81,7 @@
                 
                 <Label Text="Título de la tarea:"/>
                 <Entry Text="{Binding Titulo}"
+                       Keyboard="Text"
                        TextChanged="Titulo_TextChanged"/>
                 
             </StackLayout>
@@ -83,7 +91,7 @@
                          Style="{StaticResource Margen}">
 
                 <Label Text="Comentario:"/>
-                <Entry Text="{Binding Comentario}" 
+                <Entry Text="{Binding Comentario}"
                        TextChanged="Comentario_TextChanged"/>
 
             </StackLayout>
@@ -93,7 +101,7 @@
                 <Grid RowDefinitions="*, *, 2*"
                       ColumnDefinitions="*, Auto, *">
                     
-                    <Label Grid.Column="0" Text="Prioridad:"/>
+                    <Label Grid.Column="0" Grid.Row="0" Text="Prioridad:"/>
                     
                     <Label Grid.Column="1" Text="{Binding Prioridad}" 
                            HorizontalOptions="CenterAndExpand"
@@ -102,9 +110,6 @@
                     
                     <Stepper Grid.Row="2"
                              Grid.Column="1"
-                             Minimum="0"
-                             Maximum="3"
-                             Increment="1"
                              Value="{Binding ValorStpr}"
                              ValueChanged="Stepper_ValueChanged"/>
                     

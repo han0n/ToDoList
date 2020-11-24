@@ -14,6 +14,12 @@ namespace ToDoList.Modelo
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(titulo));
         }
 
+        // Para que al modificar no se quede guardado si se descarta
+        public ModeloTarea ObtenerCopia()
+        {
+            return (ModeloTarea)this.MemberwiseClone();
+        }
+
         #region Respecto a lo Descriptivo
 
         private String titulo;
@@ -39,13 +45,8 @@ namespace ToDoList.Modelo
                 OnPropertyChanged();
             }
         }
-        #endregion
 
-        // Para que al modificar no se quede guardado si se descarta
-        public ModeloTarea ObtenerCopia()
-        {
-            return (ModeloTarea)this.MemberwiseClone();
-        }
+        #endregion
 
         #region Respecto a la Prioridad
 
@@ -84,7 +85,10 @@ namespace ToDoList.Modelo
                 OnPropertyChanged();
             }
         }
+
         #endregion
+
+        #region Respecto al Estado
 
         // Estado del Switch
         private bool completada;
@@ -97,5 +101,8 @@ namespace ToDoList.Modelo
                 OnPropertyChanged();
             }
         }
+
+        #endregion
+
     }
 }

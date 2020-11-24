@@ -11,16 +11,15 @@ namespace ToDoList
     public partial class PagTareas : ContentPage
     {
         // Cambiado a List para que pueda ordenar y al borrar borre
-        List<ModeloTarea> listaTareas = new List<ModeloTarea>();
-       
+        private List<ModeloTarea> listaTareas = new List<ModeloTarea>();
+        // No le hago binding desde el XAML, que sería añadiendo los 
+        //descriptores de acceso get y set antes de la inicialización 
+        //porque si no, no me ordena la lista con Ordenar()
+
         public PagTareas()
         {
             InitializeComponent();
             MuestraFecha();
-
-            btnCrear.Clicked += BtnCrear_Clicked;
-            LvTareas.ItemTapped += LvTareas_ItemTapped;
-
             #region Tarea Test
 
             listaTareas.Add(new ModeloTarea()
@@ -34,7 +33,6 @@ namespace ToDoList
             });
 
             #endregion
-
             Ordenar();// **Aparte de ordenar, lista las Tareas**
         }
 
@@ -45,12 +43,10 @@ namespace ToDoList
             InitializeComponent();
             MuestraFecha();
             Ordenar();
-
-            btnCrear.Clicked += BtnCrear_Clicked;
-            LvTareas.ItemTapped += LvTareas_ItemTapped;
         }
 
         #region Btn_Clicked
+
         private void BtnCrear_Clicked(object sender, EventArgs e)
         {
             Navigation.PushModalAsync(new PagCrear(this.listaTareas));
@@ -81,7 +77,8 @@ namespace ToDoList
         #endregion
 
         #region Métodos Propios
-        public void MuestraFecha()
+
+        private void MuestraFecha()
         {
             var idioma = new System.Globalization.CultureInfo("es-ES");
             var dia = idioma.DateTimeFormat.GetDayName(DateTime.Today.DayOfWeek);
@@ -95,7 +92,7 @@ namespace ToDoList
 
         /* Método que ordena listaTareas y asigna la 
         List<ModeloTarea> listaOrdenada como ItemsSource de LvTareas */
-        public void Ordenar()
+        private void Ordenar()
         {
             //Ordena las Tareas según su Titulo
             var listaOrdenada = listaTareas.OrderBy(x => x.Titulo).ToList();
@@ -107,6 +104,7 @@ namespace ToDoList
         #endregion
 
         #region Lv_ItemTapped
+
         private void LvTareas_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var tarea = e.Item as ModeloTarea;
